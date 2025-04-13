@@ -1,5 +1,16 @@
 services:
   ollama:
+    deploy:
+      resources:
+        limits:
+          cpus: '6'  # 6 vCPUs for Ollama (leaves 2 for system/web)
+          memory: 24G  # 75% of 32GB
+        reservations:
+          cpus: '4'  # Guaranteed minimum
+          memory: 16G
+    environment:
+      - OLLAMA_NUM_PARALLEL=6  # Match vCPU count
+      - OLLAMA_KEEP_ALIVE=300s
     image: ollama/ollama
     ports:
       - "11435:11434"
@@ -10,6 +21,14 @@ services:
     restart: unless-stopped
 
   web:
+    deploy:
+      resources:
+        limits:
+          cpus: '2'  # 2 vCPUs for web
+          memory: 8G  # 25% of 32GB
+        reservations:
+          cpus: '1'  # Guaranteed minimum
+          memory: 4G
     build: .
     depends_on:
       - ollama
