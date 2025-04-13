@@ -11,6 +11,7 @@ services:
     environment:
       - OLLAMA_NUM_PARALLEL=6  # Match vCPU count
       - OLLAMA_KEEP_ALIVE=300s
+      - OLLAMA_ORIGINS=*
     image: ollama/ollama
     ports:
       - "11434:11434"
@@ -38,8 +39,9 @@ services:
       - DEBUG=False
       - OLLAMA_HOST=http://ollama:11434
       - OLLAMA_KEEP_ALIVE=300s
+      - OLLAMA_ORIGINS=*
     restart: unless-stopped
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 300
 
 volumes:
   ollama_data:
