@@ -24,12 +24,12 @@ class ClothingAnalysis(BaseModel):
 
 # Step 1: Ask targeted questions to analyze the image
 image_response = ollama.chat(
-    model='gemma3:12b',
+    model='llama3.2-vision:11b',
     format=ClothingAnalysis.model_json_schema(),
     messages=[{
         'role': 'user',
         'content': (
-            "What is in this image? Please analyze the person in this image and start by giving a short natural language description of the person's appearance, "
+            "What is in this image? Please analyze the person in this image and start by giving a short natural language description of the person's appearance and the thermal properties, "
             "focusing especially on their clothing. Mention the type, material (thick or light), color, and any noticeable features or textures. "
             "Include whether the person appears dressed for warm or cold weather.\n\n"
             "After the description, please answer the following questions:\n"

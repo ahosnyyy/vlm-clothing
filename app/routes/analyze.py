@@ -12,7 +12,7 @@ router = APIRouter()
 @router.post("/",  response_model=ClothingAnalysis)
 async def analyze_clothing(
     image: UploadFile = File(...),
-    model: str = Form("gemma3:12b")
+    model: str = Form("llama3.2-vision:11b")
 ):
     if not image.content_type.startswith('image/'):
         raise HTTPException(status_code=400, detail="File uploaded is not an image")

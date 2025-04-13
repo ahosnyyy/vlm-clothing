@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Literal, List
 
 class AnalyzeRequest(BaseModel):
-    model: str = "gemma3:12b"
+    model: str = "llama3.2-vision:11b"
 
 class ClothingAnalysis(BaseModel):
     description: str

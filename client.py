@@ -6,7 +6,7 @@ API_URL = "http://localhost:8000/analyze-clothing/"
 # Path to the image file you want to send
 IMAGE_PATH = "samples/F2.JPG"
 
-def analyze_clothing(image_path: str, model: str = "gemma3:12b"):
+def analyze_clothing(image_path: str, model: str = "llama3.2-vision:11b"):
     with open(image_path, "rb") as img_file:
         files = {"image": ("download.jpg", img_file, "image/jpeg")}
         data = {"model": model}

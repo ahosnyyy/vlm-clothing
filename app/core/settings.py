@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     endpoint_url: str = Field(default="http://localhost:8000", description="Base URL for the API endpoint")
     
     # Model settings
-    model_name: str = Field(default="gemma3:12b", description="Name of the Ollama model to use")
+    model_name: str = Field(default="llama3.2-vision:11b", description="Name of the Ollama model to use")
     model_temperature: float = Field(default=0.0, description="Temperature for model generation")
     
     # Debug settings

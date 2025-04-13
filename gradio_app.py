@@ -63,7 +63,7 @@ demo = gr.Interface(
         gr.Image(type="filepath"),
         gr.Dropdown(
             choices=["gemma3:12b", "llama3.2-vision:11b", "gemma3:4b"],
-            value="gemma3:12b",
+            value="llama3.2-vision:11b",
             label="Model"
         )
     ],
