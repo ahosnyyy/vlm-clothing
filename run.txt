@@ -4,10 +4,10 @@ uvicorn app.main:app --reload
 python gradio-app.py --reload
 
 # EC2
-ssh -i vlm.pem ubuntu@52.59.215.218
+ssh -i vlm.pem ubuntu@3.121.202.247
 ollama serve &
-cd vlm-ollama
-source vlm-ollama/bin/activate
+cd vlm-clothing
+source vlm-clothing/bin/activate
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 python gradio-app.py --reload
 
