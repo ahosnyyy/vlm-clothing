@@ -1,47 +1,12 @@
 services:
-  ollama:
-    deploy:
-      resources:
-        limits:
-          cpus: '6'  # 6 vCPUs for Ollama (leaves 2 for system/web)
-          memory: 24G  # 75% of 32GB
-        reservations:
-          cpus: '4'  # Guaranteed minimum
-          memory: 16G
-    environment:
-      - OLLAMA_NUM_PARALLEL=6  # Match vCPU count
-      - OLLAMA_KEEP_ALIVE=300s
-      - OLLAMA_ORIGINS=*
-    image: ollama/ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-      - /etc/ssl/certs:/etc/ssl/certs:ro
-
-    restart: unless-stopped
-
   web:
-    deploy:
-      resources:
-        limits:
-          cpus: '2'  # 2 vCPUs for web
-          memory: 8G  # 25% of 32GB
-        reservations:
-          cpus: '1'  # Guaranteed minimum
-          memory: 4G
     build: .
-    depends_on:
-      - ollama
     ports:
       - "8000:8000"
     environment:
       - DEBUG=False
-      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_HOST=http://host.docker.internal:11434  # ← Use host's Ollama
       - OLLAMA_KEEP_ALIVE=300s
       - OLLAMA_ORIGINS=*
     restart: unless-stopped
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 300
-
-volumes:
-  ollama_data:
