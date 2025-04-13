@@ -11,7 +11,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> str:
         messages=[{
             'role': 'user',
             'content': (
-                "What is in this image? Provide a detailed paragraph (at least 6 sentences) describing this person's clothing and appearance Mention clothing type, materials (e.g., thick or light), colors, patterns, textures, and accessories. Also, describe what kind of weather they seem dressed for.\n\n"
+                "What is in this image? Please analyze the person in this image and begin with a detailed natural language description (at least 4 sentences) of their appearance. Focus particularly on their clothing—describe the type of clothing items they are wearing, the materials (e.g., thick, light, breathable), colors, patterns, and any distinctive features or textures. Assess whether the clothing suggests the person is dressed for warm or cold weather, and explain why based on the visible attire.\n\n"
                 "After the description, please answer the following questions:\n"
                 "1. What type of clothing is the person wearing? (e.g., t-shirt, sweater, jacket, etc.)\n"
                 "2. Is the sleeve length short, long, or sleeveless?\n"
