@@ -5,7 +5,7 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=False
-      - OLLAMA_HOST=http://localhost:11434  # ← Use host's Ollama
+      - OLLAMA_HOST=http://3.121.202.247:11434  # ← Use host's Ollama
       - OLLAMA_KEEP_ALIVE=300s
       - OLLAMA_ORIGINS=*
     restart: unless-stopped
