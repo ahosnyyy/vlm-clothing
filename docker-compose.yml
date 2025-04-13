@@ -3,9 +3,11 @@ services:
     build: .
     ports:
       - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Critical for Windows
     environment:
       - DEBUG=False
-      - OLLAMA_HOST=http://host.docker.internal:11434  # Use host's Ollama
+      - OLLAMA_HOST=http://host.docker.internal:11434
       - OLLAMA_KEEP_ALIVE=300s
       - OLLAMA_ORIGINS=*
     restart: unless-stopped
