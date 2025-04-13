@@ -1,0 +1,16 @@
+# Local
+conda activate vlm
+uvicorn app.main:app --reload
+python gradio-app.py --reload
+
+# EC2
+ssh -i vlm.pem ubuntu@52.59.215.218
+ollama serve &
+cd vlm-ollama
+source vlm-ollama/bin/activate
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+python gradio-app.py --reload
+
+
+http://vlm-alb-1534324725.eu-central-1.elb.amazonaws.com/docs
+
