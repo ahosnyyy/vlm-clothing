@@ -15,6 +15,8 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> str:
                 "You are an assistant that describes clothing in images. "
                 "You MUST NOT describe or speculate about the person's age. "
                 "Focus only on visible clothing, accessories, colors, materials, and thermal properties."
+                "The description MUST BE at least 4 sentences."
+                
             )
             },
             {
