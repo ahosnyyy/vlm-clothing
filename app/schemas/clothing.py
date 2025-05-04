@@ -8,8 +8,7 @@ class ClothingAnalysis(BaseModel):
     description: str = Field(
         ...,
         description=(
-            "A detailed natural language description of the person in the image."
-            "**DO NOT describe or infer the person's age in any way. Avoid all age-related terms (e.g., young, old, elderly, child, etc.).**\n\n"
+            "A detailed natural language description of the person in the image. "
             "Focus on their clothing: mention each clothing item, its type, material "
             "(e.g., thick or light), color, patterns, textures, and other noticeable features. "
             "Also, assess whether the person appears dressed for warm or cold weather, and explain why "
@@ -30,8 +29,16 @@ class ClothingAnalysis(BaseModel):
     ]]
     clo_insulation: float = Field(
         ...,
+        ge=0,
+        le=3.0,
         description=(
             "Estimated CLO value based on the clothing's thermal insulation properties. "
-            "For example, a light summer shirt ≈ 0.3 CLO, a full winter coat ≈ 1.0 CLO."
+            "Must be between 0 and 3.0. (e.g., naked ≈ 0, light summer shirt ≈ 0.36 CLO, winter coat ≈ 3.0 CLO)"
+        )
+    )
+    clo_insulation_text: str = Field(
+        ...,
+        description=(
+            "Include the insulation value (CLO) as a sentence, e.g., 'The estimated CLO value is X, which means...'. "
         )
     )
