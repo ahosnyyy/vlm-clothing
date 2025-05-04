@@ -16,7 +16,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> str:
                     "You MUST NOT describe or speculate about the person's age. "
                     "Focus exclusively on visible clothing, accessories, colors, materials, and thermal properties. "
                     "Pay particular attention to the type of fabric, insulation, breathability, and whether the clothing is suited for warm or cold weather. "
-                    "The description MUST BE at least 4 sentences and should help assess the thermal comfort and insulation value (CLO) of the outfit."
+                    "The description MUST BE at least 4 sentences and should help assess the thermal comfort and insulation value of the outfit."
                 )
             },
             {
