@@ -30,7 +30,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> str:
                 "4. Is the person wearing glasses? (Yes or No)\n"
                 "5. Is the person wearing any headwear? (Yes or No)\r\n"
                 "6. Is the person wearing any accessories? (e.g., scarf, gloves, belt, etc.)\r\n"
-                "7. Estimate the CLO value of the clothing based on its thermal insulation properties (e.g., naked ≈ 0, light summer shirt ≈ 0.36 CLO, winter coat ≈ 3.0 CLO).\r\n"
+                "7. Estimate the CLO value of the clothing based on its thermal insulation properties (e.g., naked ≈ 0, light summer shirt ≈ 0.5 CLO, winter coat ≈ 3.0 CLO).\r\n"
                 "8. Include the insulation value (CLO) as a sentence in the clo_insulation_text, e.g., 'The estimated CLO value is X, which means...'. "
             ),
             'images': [image_path]

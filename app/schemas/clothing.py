@@ -33,7 +33,7 @@ class ClothingAnalysis(BaseModel):
         le=3.0,
         description=(
             "Estimated CLO value based on the clothing's thermal insulation properties. "
-            "Must be between 0 and 3.0. (e.g., naked ≈ 0, light summer shirt ≈ 0.36 CLO, winter coat ≈ 3.0 CLO)"
+            "Must be between 0 and 3.0. (e.g., naked ≈ 0, light summer shirt ≈ 0.5 CLO, winter coat ≈ 3.0 CLO)"
         )
     )
     clo_insulation_text: str = Field(
