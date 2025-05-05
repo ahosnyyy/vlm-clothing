@@ -17,7 +17,7 @@ class ClothingAnalysis(BaseModel):
     )
     clothing_type: List[Literal[
         "t-shirt", "shirt", "sweater", "hoodie", "jacket", "coat", "blazer",
-        "dress", "tank top", "suit", "vest", "cardigan", "polo t-shirt",
+        "dress pants", "dress", "tank top", "suit", "vest", "cardigan", "polo t-shirt",
         "jeans", "pants", "trousers", "shorts", "skirt", "leggings", "joggers"
     ]]
     sleeve_length: Literal['short', 'long', 'sleeveless', 'unknown']
