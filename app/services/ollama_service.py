@@ -34,7 +34,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> str:
                 "7. Estimate the CLO value of the clothing based on its thermal insulation properties using this precise scale:\n"
                     "0.0 = Nude (no clothing); "
                     "0.1–0.3 = Very minimal clothing (e.g., underwear); "
-                    "0.4–0.6 = Light summer clothing (e.g., T-shirt and shorts); "
+                    "0.4–0.6 = Light summer clothing (e.g., T-shirt, Polo t-shirt and shorts); "
                     "0.7–0.9 = Light business casual (e.g., shirt and trousers); "
                     "1.0 = Typical business suit; "
                     "1.1–1.4 = Light winter clothing or heavier business wear; "
