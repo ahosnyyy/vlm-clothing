@@ -17,7 +17,7 @@ class ClothingAnalysis(BaseModel):
     )
     clothing_type: List[Literal[
         "t-shirt", "shirt", "sweater", "hoodie", "jacket", "coat", "blazer",
-        "dress", "tank top", "suit", "vest", "cardigan",
+        "dress", "tank top", "suit", "vest", "cardigan", "polo t-shirt",
         "jeans", "pants", "trousers", "shorts", "skirt", "leggings", "joggers"
     ]]
     sleeve_length: Literal['short', 'long', 'sleeveless', 'unknown']
@@ -33,12 +33,23 @@ class ClothingAnalysis(BaseModel):
         le=3.0,
         description=(
             "Estimated CLO value based on the clothing's thermal insulation properties. "
-            "Must be between 0 and 3.0. (e.g., naked ≈ 0, light summer shirt ≈ 0.5 CLO, winter coat ≈ 3.0 CLO)"
+            "Must be between 0.0 and 3.0. Approximate scale: "
+            "0.0 = Nude (no clothing); "
+            "0.1–0.3 = Very minimal clothing (e.g., underwear); "
+            "0.4–0.6 = Light summer clothing (e.g., T-shirt and shorts); "
+            "0.7–0.9 = Light business casual (e.g., shirt and trousers); "
+            "1.0 = Typical business suit; "
+            "1.1–1.4 = Light winter clothing or heavier business wear; "
+            "1.5–1.9 = Multiple layers, medium winter clothing; "
+            "2.0–2.5 = Heavy winter clothing (e.g., coat, thermal layers); "
+            "2.6–3.0 = Arctic or extreme cold weather gear."
         )
+
     )
     clo_insulation_text: str = Field(
         ...,
         description=(
             "Include the insulation value (CLO) as a sentence, e.g., 'The estimated CLO value is X, which means...'. "
+            "Explain what the CLO value indicates about thermal comfort and appropriate weather conditions. "
         )
     )
