@@ -9,4 +9,5 @@ Pillow
 requests
 tqdm
 pydantic
+PyYAML
 pydantic_settings
