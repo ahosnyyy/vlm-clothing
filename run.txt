@@ -4,7 +4,7 @@ uvicorn app.main:app --reload
 python gradio-app.py --reload
 
 # EC2
-ssh -i vlm.pem ubuntu@18.156.6.198
+ssh -i vlm.pem ubuntu@18.156.136.207
 ollama serve &
 cd vlm-clothing
 source vlm-clothing/bin/activate
