@@ -1,9 +1,11 @@
 import ollama
 import os
+import json
 from app.schemas.clothing import ClothingAnalysis
 from app.core.settings import settings
+from app.services.clo_service import calculate_clo_value
 
-def analyze_image(image_path: str, model: str = settings.model_name) -> str:
+def analyze_image(image_path: str, model: str = settings.model_name) -> ClothingAnalysis:
     response = ollama.chat(
         model=model,
         options={'temperature': settings.model_temperature},
@@ -71,4 +73,44 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> str:
             'images': [image_path]
         }]
     )
-    return response['message']['content']
+    # Parse the JSON response
+    content = response['message']['content']
+    
+    # Convert the JSON string to a ClothingAnalysis object
+    analysis = ClothingAnalysis.model_validate_json(content)
+    
+    # Calculate the CLO value based on the detected clothing items
+    calculated_clo = calculate_clo_value(analysis)
+    
+    # Update the CLO value in the analysis
+    analysis.clo_insulation = calculated_clo
+    
+    # Update the CLO text description
+    analysis.clo_insulation_text = f"The estimated CLO value is {calculated_clo}, which means {get_clo_description(calculated_clo)}"
+    
+    return analysis
+
+def get_clo_description(clo_value: float) -> str:
+    """
+    Returns a description of what the CLO value indicates about thermal comfort.
+    
+    Args:
+        clo_value: The calculated CLO value
+        
+    Returns:
+        A description of the thermal comfort
+    """
+    if clo_value < 0.3:
+        return "the person is dressed in very minimal clothing suitable only for very hot environments or indoor settings with high temperatures."
+    elif clo_value < 0.6:
+        return "the person is dressed in light summer clothing suitable for warm weather conditions."
+    elif clo_value < 1.0:
+        return "the person is dressed in moderate clothing suitable for mild or temperate weather conditions."
+    elif clo_value < 1.5:
+        return "the person is dressed in business attire or light winter clothing suitable for cool weather conditions."
+    elif clo_value < 2.0:
+        return "the person is dressed in medium winter clothing with multiple layers suitable for cold weather conditions."
+    elif clo_value < 2.6:
+        return "the person is dressed in heavy winter clothing suitable for very cold weather conditions."
+    else:
+        return "the person is dressed in extreme cold weather gear suitable for arctic or extremely cold conditions."

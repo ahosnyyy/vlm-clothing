@@ -21,42 +21,19 @@ async def analyze_clothing(
 
     try:
         try:
-            raw_response = analyze_image(temp_path, model)
+            # The analyze_image function now returns a ClothingAnalysis object directly
+            analysis = analyze_image(temp_path, model)
+            return analysis.model_dump()
         except Exception as e:
-            # Capture Ollama service errors
+            # Capture any errors from the analyze_image function
             error_detail = str(e)
             stack_trace = traceback.format_exc()
             return JSONResponse(
                 status_code=500,
                 content={
-                    "detail": "Error communicating with Ollama service",
+                    "detail": "Error processing image",
                     "error": error_detail,
                     "trace": stack_trace
-                }
-            )
-
-        try:
-            structured = json.loads(raw_response)
-            parsed = ClothingAnalysis(**structured)
-
-            return parsed.model_dump()
-        
-        except json.JSONDecodeError as e:
-            return JSONResponse(
-                status_code=400, 
-                content={
-                    "error": "Invalid JSON response from model",
-                    "detail": str(e),
-                    "raw": raw_response
-                }
-            )
-        except Exception as e:
-            return JSONResponse(
-                status_code=422, 
-                content={
-                    "error": "Failed to validate model response",
-                    "detail": str(e),
-                    "raw": raw_response
                 }
             )
     finally:
