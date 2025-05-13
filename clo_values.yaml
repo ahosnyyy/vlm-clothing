@@ -1,6 +1,6 @@
 # CLO values for clothing items
 # Base CLO value for a nude person
-base_clo: 0.00
+base_clo: 0.16
 
 # CLO values for individual clothing items
 clo_values:
