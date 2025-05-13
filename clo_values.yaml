@@ -5,43 +5,44 @@ base_clo: 0.00
 # CLO values for individual clothing items
 clo_values:
   # Upper body
-  t-shirt: 0.25
-  shirt: 0.35
-  sweater: 0.45
-  hoodie: 0.7
-  jacket: 0.9
-  coat: 1
-  blazer: 0.8
-  tank top: 0.15
-  suit: 0.8
-  vest: 0.6
-  cardigan: 0.7
-  polo t-shirt: 0.25
+  t-shirt: 0.19
+  shirt: 0.25
+  sweater: 0.36
+  hoodie: 0.34
+  jacket: 0.44
+  coat: 0.44
+  blazer: 0.36
+  tank top: 0.12
+  suit: 0.36
+  vest: 0.22
+  cardigan: 0.36
+  polo t-shirt: 0.19
   
   # Lower body
-  pants: 0.25
-  dress pants: 0.25
-  jeans: 0.28
-  trousers: 0.25
-  shorts: 0.1
-  skirt: 0.2
-  leggings: 0.25
-  joggers: 0.25
+  pants: 0.15
+  dress pants: 0.15
+  jeans: 0.15
+  trousers: 0.15
+  shorts: 0.08
+  skirt: 0.14
+  leggings: 0.15
+  joggers: 0.15
   
   # Full body
-  dress: 0.25
+  dress: 0.33
   
   # Accessories
-  scarf: 0.1
+  scarf: 0.05
   gloves: 0.05
-  belt: 0.01
+  belt: 0.00
   watch: 0.00
   necklace: 0.00
   bracelet: 0.00
   earrings: 0.00
   bag: 0.00
-  tie: 0.01
+  tie: 0.00
   
   # Headwear
   glasses: 0.00
   headwear: 0.05
+  
