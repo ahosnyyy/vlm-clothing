@@ -68,10 +68,29 @@ def calculate_clo_value(analysis: ClothingAnalysis, yaml_file: str = 'clo_values
     # Check if any lower body item is detected
     has_lower_body = any(item.lower() in lower_body_items for item in analysis.clothing_type)
     
+    # Track if t-shirt or shirt has been processed to avoid double counting
+    processed_shirt = False
+    
     # Add CLO values for each clothing type
     for item in analysis.clothing_type:
-        if item.lower() in clo_mapping:
-            total_clo += clo_mapping[item.lower()]
+        item_lower = item.lower()
+        
+        # Special handling for t-shirt, polo t-shirt, and shirt based on sleeve length
+        if (item_lower == "t-shirt" or item_lower == "polo t-shirt") and analysis.sleeve_length == 'long' and not processed_shirt:
+            # If t-shirt or polo t-shirt with long sleeves, use shirt CLO value
+            if "shirt" in clo_mapping:
+                total_clo += clo_mapping["shirt"]
+                processed_shirt = True
+        elif item_lower == "shirt" and analysis.sleeve_length == 'short' and not processed_shirt:
+            # If shirt with short sleeves, use t-shirt CLO value
+            if "t-shirt" in clo_mapping:
+                total_clo += clo_mapping["t-shirt"]
+                processed_shirt = True
+        elif item_lower in clo_mapping and not (processed_shirt and (item_lower == "t-shirt" or item_lower == "shirt" or item_lower == "polo t-shirt")):
+            # Normal case for other items, or if t-shirt/shirt/polo t-shirt hasn't been processed yet
+            total_clo += clo_mapping[item_lower]
+            if item_lower == "t-shirt" or item_lower == "shirt" or item_lower == "polo t-shirt":
+                processed_shirt = True
     
     # If no lower body item detected, add jeans as default
     if not has_lower_body and "jeans" in clo_mapping:
