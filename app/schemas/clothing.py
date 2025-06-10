@@ -74,8 +74,7 @@ class ClothingAnalysis(BaseModel):
         ...,
         description=(
             "Briefly explain the technical implications of the CLO value. "
-            "Focus on activity level considerations and potential modifications "
-            "to improve comfort (e.g., adding/removing layers). "
+            "Focus on activity level considerations."
             "Keep it concise and avoid repeating information from the description."
         )
     )
