@@ -67,7 +67,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
                     "2.6–3.0 = Arctic or extreme cold weather gear:\n"
                     "   - Heavy insulated coat with multiple thermal layers\n"
                     "   - Specialized extreme weather clothing\n\n"
-                "8. For the clo_insulation_text field, provide a single short sentence that states the CLO value and explains what it means for activity level. Example: 'CLO value of 0.8 is ideal for moderate activity.' Keep it extremely brief (max 15 words)."
+                "8. For the clo_insulation_text field, provide a single short sentence that states the exact CLO value and explains what it means for thermal comfort. Example: 'CLO value of 0.8 provides light insulation for mild conditions.' Keep it extremely brief (max 15 words)."
 
             ),
             'images': [image_path]
@@ -86,33 +86,33 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
     analysis.clo_insulation = calculated_clo
     
     # Generate a short text about the CLO value
-    analysis.clo_insulation_text = f"CLO value of {calculated_clo:.1f} is ideal for {get_activity_level(calculated_clo)}."
+    analysis.clo_insulation_text = f"CLO value of {calculated_clo} provides {get_thermal_comfort(calculated_clo)}."
     
     return analysis
 
-def get_activity_level(clo_value: float) -> str:
+def get_thermal_comfort(clo_value: float) -> str:
     """
-    Returns a very brief description of the ideal activity level for a given CLO value.
+    Returns a very brief description of the thermal comfort for a given CLO value.
     
     Args:
         clo_value: The calculated CLO value
         
     Returns:
-        A brief activity level description
+        A brief thermal comfort description
     """
     if clo_value < 0.3:
-        return "high-intensity activity"
+        return "minimal insulation for very hot conditions"
     elif clo_value < 0.6:
-        return "active movement"
+        return "light insulation for warm conditions"
     elif clo_value < 1.0:
-        return "moderate activity"
+        return "moderate insulation for mild conditions"
     elif clo_value < 1.5:
-        return "light activity"
+        return "standard insulation for cool conditions"
     elif clo_value < 2.0:
-        return "minimal activity"
+        return "substantial insulation for cold conditions"
     elif clo_value < 2.6:
-        return "low-intensity activity"
+        return "heavy insulation for very cold conditions"
     else:
-        return "minimal movement"
+        return "maximum insulation for extreme cold"
 
 # Function removed as we're now using the VLM-generated text directly

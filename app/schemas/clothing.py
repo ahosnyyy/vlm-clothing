@@ -73,8 +73,8 @@ class ClothingAnalysis(BaseModel):
     clo_insulation_text: str = Field(
         ...,
         description=(
-            "In a single short sentence, state the CLO value and explain what it means for activity level. "
-            "Example: 'CLO value of 0.8 is ideal for moderate activity.' "
+            "In a single short sentence, state the exact CLO value and explain what it means for thermal comfort. "
+            "Example: 'CLO value of 0.8 provides light insulation for mild conditions.' "
             "Keep it extremely brief (max 15 words)."
         )
     )
