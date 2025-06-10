@@ -85,9 +85,34 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
     # Update the CLO value in the analysis
     analysis.clo_insulation = calculated_clo
     
-    # Keep the VLM-generated clo_insulation_text
-    # (no override needed as the VLM already generated this text)
+    # Generate a short text about the CLO value
+    analysis.clo_insulation_text = f"CLO value of {calculated_clo:.1f} is ideal for {get_activity_level(calculated_clo)}."
     
     return analysis
+
+def get_activity_level(clo_value: float) -> str:
+    """
+    Returns a very brief description of the ideal activity level for a given CLO value.
+    
+    Args:
+        clo_value: The calculated CLO value
+        
+    Returns:
+        A brief activity level description
+    """
+    if clo_value < 0.3:
+        return "high-intensity activity"
+    elif clo_value < 0.6:
+        return "active movement"
+    elif clo_value < 1.0:
+        return "moderate activity"
+    elif clo_value < 1.5:
+        return "light activity"
+    elif clo_value < 2.0:
+        return "minimal activity"
+    elif clo_value < 2.6:
+        return "low-intensity activity"
+    else:
+        return "minimal movement"
 
 # Function removed as we're now using the VLM-generated text directly
