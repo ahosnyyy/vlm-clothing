@@ -67,7 +67,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
                     "2.6–3.0 = Arctic or extreme cold weather gear:\n"
                     "   - Heavy insulated coat with multiple thermal layers\n"
                     "   - Specialized extreme weather clothing\n\n"
-                "8. Include the insulation value (CLO) as a sentence in the clo_insulation_text, e.g., 'The estimated CLO value is X, which means...'. Explain what the CLO value indicates about thermal comfort and appropriate weather conditions."
+                "8. For the clo_insulation_text field, focus on technical aspects that complement the general description. Include specific temperature ranges this outfit would be comfortable in (e.g., '65-75°F/18-24°C'), potential modifications to improve thermal comfort (adding/removing layers), and physiological considerations (e.g., activity level impact, wind/humidity effects). Avoid repeating general weather suitability already covered in the description."
 
             ),
             'images': [image_path]
@@ -86,31 +86,32 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
     analysis.clo_insulation = calculated_clo
     
     # Update the CLO text description
-    analysis.clo_insulation_text = f"The estimated CLO value is {calculated_clo}, which means {get_clo_description(calculated_clo)}"
+    analysis.clo_insulation_text = f"The estimated CLO value is {calculated_clo:.1f}. {get_clo_description(calculated_clo).format(calculated_clo)}"
     
     return analysis
 
 def get_clo_description(clo_value: float) -> str:
     """
-    Returns a description of what the CLO value indicates about thermal comfort.
+    Returns a technical description of what the CLO value indicates about thermal comfort,
+    focusing on aspects that complement the general clothing description.
     
     Args:
         clo_value: The calculated CLO value
         
     Returns:
-        A description of the thermal comfort
+        A technical description of thermal comfort considerations
     """
     if clo_value < 0.3:
-        return "the person is dressed in very minimal clothing suitable only for very hot environments or indoor settings with high temperatures."
+        return "this outfit provides minimal thermal insulation (CLO {:.1f}) and would be comfortable in temperatures above 85°F/29°C. For cooler environments, adding layers would be necessary. This ensemble is best suited for high-activity situations where heat dissipation is important."
     elif clo_value < 0.6:
-        return "the person is dressed in light summer clothing suitable for warm weather conditions."
+        return "this outfit provides light thermal insulation (CLO {:.1f}) and would be comfortable in temperatures between 75-85°F/24-29°C. In breezier conditions or air-conditioned spaces, a light additional layer might be beneficial."
     elif clo_value < 1.0:
-        return "the person is dressed in moderate clothing suitable for mild or temperate weather conditions."
+        return "this outfit provides moderate thermal insulation (CLO {:.1f}) and would be comfortable in temperatures between 65-75°F/18-24°C. The outfit balances heat retention and breathability, making it versatile for varying indoor and outdoor activities."
     elif clo_value < 1.5:
-        return "the person is dressed in business attire or light winter clothing suitable for cool weather conditions."
+        return "this outfit provides business-casual thermal insulation (CLO {:.1f}) and would be comfortable in temperatures between 55-65°F/13-18°C. For windy conditions or prolonged outdoor exposure, an additional outer layer might be beneficial."
     elif clo_value < 2.0:
-        return "the person is dressed in medium winter clothing with multiple layers suitable for cold weather conditions."
+        return "this outfit provides substantial thermal insulation (CLO {:.1f}) and would be comfortable in temperatures between 40-55°F/4-13°C. The layering allows for adaptation to changing conditions by removing or adding pieces as needed."
     elif clo_value < 2.6:
-        return "the person is dressed in heavy winter clothing suitable for very cold weather conditions."
+        return "this outfit provides significant thermal insulation (CLO {:.1f}) and would be comfortable in temperatures between 20-40°F/-7-4°C. The heavy insulation works best for low-activity situations; during higher activity, overheating may occur."
     else:
-        return "the person is dressed in extreme cold weather gear suitable for arctic or extremely cold conditions."
+        return "this outfit provides maximum thermal insulation (CLO {:.1f}) and would be comfortable in temperatures below 20°F/-7°C. This level of insulation is specifically designed for extreme conditions and limited mobility should be expected due to the bulkiness."

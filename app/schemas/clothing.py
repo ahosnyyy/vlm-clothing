@@ -73,7 +73,10 @@ class ClothingAnalysis(BaseModel):
     clo_insulation_text: str = Field(
         ...,
         description=(
-            "Include the insulation value (CLO) as a sentence, e.g., 'The estimated CLO value is X, which means...'. "
-            "Explain what the CLO value indicates about thermal comfort and appropriate weather conditions. "
+            "Focus on the technical aspects of the CLO value that complement the general description. "
+            "Include specific temperature ranges this outfit would be comfortable in, "
+            "potential modifications to improve thermal comfort (adding/removing layers), "
+            "and physiological considerations (e.g., activity level impact, wind/humidity effects). "
+            "Avoid repeating general weather suitability already covered in the description."
         )
     )
