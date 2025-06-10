@@ -73,10 +73,9 @@ class ClothingAnalysis(BaseModel):
     clo_insulation_text: str = Field(
         ...,
         description=(
-            "Focus on the technical aspects of the CLO value that complement the general description. "
-            "Include specific temperature ranges this outfit would be comfortable in, "
-            "potential modifications to improve thermal comfort (adding/removing layers), "
-            "and physiological considerations (e.g., activity level impact, wind/humidity effects). "
-            "Avoid repeating general weather suitability already covered in the description."
+            "Briefly explain the technical implications of the CLO value. "
+            "Focus on activity level considerations and potential modifications "
+            "to improve comfort (e.g., adding/removing layers). "
+            "Keep it concise and avoid repeating information from the description."
         )
     )
