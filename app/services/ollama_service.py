@@ -67,7 +67,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
                     "2.6–3.0 = Arctic or extreme cold weather gear:\n"
                     "   - Heavy insulated coat with multiple thermal layers\n"
                     "   - Specialized extreme weather clothing\n\n"
-                "8. For the clo_insulation_text field, briefly explain the technical implications of the CLO value. Focus on activity level considerations. Keep it concise (1-2 sentences) and avoid repeating information from the description."
+                "8. For the clo_insulation_text field, provide a single short sentence that states the CLO value and explains what it means for activity level. Example: 'CLO value of 0.8 is ideal for moderate activity.' Keep it extremely brief (max 15 words)."
 
             ),
             'images': [image_path]
