@@ -85,33 +85,9 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
     # Update the CLO value in the analysis
     analysis.clo_insulation = calculated_clo
     
-    # Update the CLO text description
-    analysis.clo_insulation_text = f"The estimated CLO value is {calculated_clo:.1f}. {get_clo_description(calculated_clo).format(calculated_clo)}"
+    # Keep the VLM-generated clo_insulation_text
+    # (no override needed as the VLM already generated this text)
     
     return analysis
 
-def get_clo_description(clo_value: float) -> str:
-    """
-    Returns a brief technical description of the CLO value implications,
-    focusing on activity level and potential modifications.
-    
-    Args:
-        clo_value: The calculated CLO value
-        
-    Returns:
-        A concise technical description
-    """
-    if clo_value < 0.3:
-        return "this minimal insulation (CLO {:.1f}) is best for high-activity situations where heat dissipation is important."
-    elif clo_value < 0.6:
-        return "this light insulation (CLO {:.1f}) works well for active movement in warmer environments."
-    elif clo_value < 1.0:
-        return "this moderate insulation (CLO {:.1f}) balances heat retention and breathability, making it versatile for varying activity levels."
-    elif clo_value < 1.5:
-        return "this business-casual insulation (CLO {:.1f}) is suitable for moderate activity in typical indoor environments."
-    elif clo_value < 2.0:
-        return "this substantial insulation (CLO {:.1f}) is best for light to moderate activity in cooler conditions."
-    elif clo_value < 2.6:
-        return "this significant insulation (CLO {:.1f}) works best for low-activity situations in cold environments."
-    else:
-        return "this maximum insulation (CLO {:.1f}) is designed for minimal activity in extreme conditions. Limited mobility should be expected due to bulkiness."
+# Function removed as we're now using the VLM-generated text directly
