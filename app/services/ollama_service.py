@@ -17,7 +17,7 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
                     "You are an assistant that describes clothing in images CONCISELY yet INFORMATIVELY. "
                     "You MUST NOT describe or speculate about the person's age. "
                     "Focus exclusively on visible clothing, accessories, colors, materials, and thermal properties. "
-                    "Keep your descriptions focused and informative - use 4-5 short sentences. "
+                    "Keep your descriptions focused and informative - use 3-4 short sentences. "
                     "Be clear about whether the clothing is suited for warm or cold weather and provide brief reasoning.\n\n"
                     "Be precise in your CLO estimation based on visible layers, fabric thickness, and coverage."
                 )

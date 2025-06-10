@@ -10,7 +10,7 @@ class ClothingAnalysis(BaseModel):
         description=(
             "A concise yet informative description of the person's clothing in the image. "
             "Mention each clothing item, its type, material, color, and key features. "
-            "In 4-5 short sentences, assess whether the outfit is suited for warm or cold weather "
+            "In 3-4 short sentences, assess whether the outfit is suited for warm or cold weather "
             "and provide brief reasoning based on the visible clothing layers and materials. "
             "Be clear and focused while providing sufficient detail."
         )
