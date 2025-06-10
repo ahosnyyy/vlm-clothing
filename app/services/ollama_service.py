@@ -14,18 +14,18 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
             {
                 "role": "system",
                 "content": (
-                    "You are an assistant that describes clothing in images CONCISELY. "
+                    "You are an assistant that describes clothing in images CONCISELY yet INFORMATIVELY. "
                     "You MUST NOT describe or speculate about the person's age. "
                     "Focus exclusively on visible clothing, accessories, colors, materials, and thermal properties. "
-                    "Keep your descriptions brief and to the point - use 3-4 short sentences maximum. "
-                    "Be direct about whether the clothing is suited for warm or cold weather.\n\n"
+                    "Keep your descriptions focused and informative - use 4-5 short sentences. "
+                    "Be clear about whether the clothing is suited for warm or cold weather and provide brief reasoning.\n\n"
                     "Be precise in your CLO estimation based on visible layers, fabric thickness, and coverage."
                 )
             },
             {
             'role': 'user',
             'content': (
-                "description: What is in this image? Please analyze the person in this image and provide a CONCISE description (2-3 short sentences) of their clothing. Focus only on essential details: the type of clothing items, materials, colors, and key features. Briefly state whether the outfit is suited for warm or cold weather.\n\n"
+                "description: What is in this image? Please analyze the person in this image and provide a CONCISE yet INFORMATIVE description (4-5 short sentences) of their clothing. Include details about the type of clothing items, materials, colors, and key features. Assess whether the outfit is suited for warm or cold weather and provide brief reasoning based on the visible clothing layers and materials.\n\n"
                 "After the description, please answer the following questions:\n"
                 "1. What type of clothing is the person wearing? (e.g., t-shirt, sweater, jacket, etc.)\n"
                 "2. Is the sleeve length short, long, or sleeveless?\n"

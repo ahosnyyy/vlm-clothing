@@ -8,10 +8,11 @@ class ClothingAnalysis(BaseModel):
     description: str = Field(
         ...,
         description=(
-            "A concise description of the person's clothing in the image. "
+            "A concise yet informative description of the person's clothing in the image. "
             "Mention each clothing item, its type, material, color, and key features. "
-            "In 3-4 short sentences, assess whether the outfit is suited for warm or cold weather. "
-            "Be direct and avoid unnecessary details."
+            "In 4-5 short sentences, assess whether the outfit is suited for warm or cold weather "
+            "and provide brief reasoning based on the visible clothing layers and materials. "
+            "Be clear and focused while providing sufficient detail."
         )
     )
     clothing_type: List[Literal[
