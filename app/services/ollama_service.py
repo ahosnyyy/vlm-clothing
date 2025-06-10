@@ -102,16 +102,16 @@ def get_clo_description(clo_value: float) -> str:
         A concise technical description
     """
     if clo_value < 0.3:
-        return "this minimal insulation (CLO {:.1f}) is best for high-activity situations where heat dissipation is important. Adding layers recommended for most environments."
+        return "this minimal insulation (CLO {:.1f}) is best for high-activity situations where heat dissipation is important."
     elif clo_value < 0.6:
-        return "this light insulation (CLO {:.1f}) works well for active movement. Consider an extra layer in breezier conditions or air-conditioned spaces."
+        return "this light insulation (CLO {:.1f}) works well for active movement in warmer environments."
     elif clo_value < 1.0:
         return "this moderate insulation (CLO {:.1f}) balances heat retention and breathability, making it versatile for varying activity levels."
     elif clo_value < 1.5:
-        return "this business-casual insulation (CLO {:.1f}) is suitable for moderate activity. Add an outer layer for windy conditions or prolonged outdoor exposure."
+        return "this business-casual insulation (CLO {:.1f}) is suitable for moderate activity in typical indoor environments."
     elif clo_value < 2.0:
-        return "this substantial insulation (CLO {:.1f}) allows adaptation by removing or adding layers as activity level changes."
+        return "this substantial insulation (CLO {:.1f}) is best for light to moderate activity in cooler conditions."
     elif clo_value < 2.6:
-        return "this significant insulation (CLO {:.1f}) works best for low-activity situations; during higher activity, consider removing layers to prevent overheating."
+        return "this significant insulation (CLO {:.1f}) works best for low-activity situations in cold environments."
     else:
         return "this maximum insulation (CLO {:.1f}) is designed for minimal activity in extreme conditions. Limited mobility should be expected due to bulkiness."
