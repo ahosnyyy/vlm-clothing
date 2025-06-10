@@ -14,18 +14,18 @@ def analyze_image(image_path: str, model: str = settings.model_name) -> Clothing
             {
                 "role": "system",
                 "content": (
-                    "You are an assistant that describes clothing in images. "
+                    "You are an assistant that describes clothing in images CONCISELY. "
                     "You MUST NOT describe or speculate about the person's age. "
                     "Focus exclusively on visible clothing, accessories, colors, materials, and thermal properties. "
-                    "Pay particular attention to the type of fabric, insulation, breathability, and whether the clothing is suited for warm or cold weather. "
-                    "The description MUST be at least **4 sentences** and should help assess the thermal comfort and insulation value of the outfit.\n\n"
+                    "Keep your descriptions brief and to the point - use 2-3 short sentences maximum. "
+                    "Be direct about whether the clothing is suited for warm or cold weather.\n\n"
                     "Be precise in your CLO estimation based on visible layers, fabric thickness, and coverage."
                 )
             },
             {
             'role': 'user',
             'content': (
-                "description: What is in this image? Please analyze the person in this image and begin with a natural language description (at least 3 sentences max 5 lines.) of their appearance. Focus particularly on their clothing—describe the type of clothing items they are wearing, the materials (e.g., thick, light, breathable), colors, patterns, and any distinctive features or textures. Assess whether the clothing suggests the person is dressed for warm or cold weather, and explain why based on the visible attire.\n\n"
+                "description: What is in this image? Please analyze the person in this image and provide a CONCISE description (2-3 short sentences) of their clothing. Focus only on essential details: the type of clothing items, materials, colors, and key features. Briefly state whether the outfit is suited for warm or cold weather.\n\n"
                 "After the description, please answer the following questions:\n"
                 "1. What type of clothing is the person wearing? (e.g., t-shirt, sweater, jacket, etc.)\n"
                 "2. Is the sleeve length short, long, or sleeveless?\n"
