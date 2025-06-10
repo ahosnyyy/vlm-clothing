@@ -8,7 +8,7 @@ class ClothingAnalysis(BaseModel):
     description: str = Field(
         ...,
         description=(
-            "A detailed natural language description of the person in the image. "
+            "A natural language description of the person in the image. "
             "Focus on their clothing: mention each clothing item, its type, material "
             "(e.g., thick or light), color, patterns, textures, and other noticeable features. "
             "Also, assess whether the person appears dressed for warm or cold weather, and explain why "
